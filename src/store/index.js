@@ -1,5 +1,5 @@
 import {create} from "zustand";
-// import {persist} from "zustand/middleware";
+// import {persist} from "zustand/middleware"
 // import {useStore} from "zustand/vanilla";
 
 const useBearStore = create((set) => ({

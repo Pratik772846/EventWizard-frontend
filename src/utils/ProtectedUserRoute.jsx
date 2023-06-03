@@ -4,10 +4,10 @@ import {Navigate, useLocation} from "react-router-dom"
 
 const ProtectedUserRoute = ({children}) => {
     const state = useBearStore();
-    console.log(state.isAuthenticated);
     let location = useLocation();
-
-    if(!state.isAuthenticated) {
+    const auth = localStorage.getItem('isAuthenticated');
+    state.isAuthenticated = auth;
+    if(!auth) {
         return <Navigate to="/" state={{ from: location}} replace />
     }
     return children
