@@ -3,14 +3,18 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
 import {useNavigate} from 'react-router-dom';
-
+import { useBearStore } from '../../store/index';
 const Login = () => {
 
   const [details, setDetails] = React.useState({
-    email: "a@gmail.com",
+    email: "singhpratik087015@gmail.com",
     password: "123456"
   });
   const navigate = useNavigate();
+
+  const state = useBearStore();
+  console.log(state.isAuthenticated);
+  const Login = useBearStore(state => state.Login);
   
 
 // handle changes to details object
@@ -62,7 +66,14 @@ const Login = () => {
           console.log(response);
           console.log(response.data.message);
           if(response.data.message==='Auth successful'){
+            
+            await Login();
+            console.log(state);
+            // console.log(state.isAuthenticated);
             navigate('/home',{ replace: true });
+          }
+          else{
+            navigate('/',{replace:true});
           }
           toast(response.data.message);
       } catch (error) {
