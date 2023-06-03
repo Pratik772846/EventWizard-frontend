@@ -3,7 +3,7 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
 import {useNavigate} from 'react-router-dom';
-import { useBearStore } from '../../store/index';
+import { useBearStore } from '../../store/index.js';
 const Login = () => {
 
   const [details, setDetails] = React.useState({
@@ -14,6 +14,8 @@ const Login = () => {
 
   const state = useBearStore();
   console.log(state.isAuthenticated);
+  
+  // console.log(state.isAuthenticated);
   const Login = useBearStore(state => state.Login);
   
 
@@ -67,8 +69,11 @@ const Login = () => {
           console.log(response.data.message);
           if(response.data.message==='Auth successful'){
             
-            await Login();
+            // await Login();
+            state.isAuthenticated = true;
+            localStorage.setItem('isAuthenticated',true);
             console.log(state);
+            console.log(state.isAuthenticated)
             // console.log(state.isAuthenticated);
             navigate('/home',{ replace: true });
           }

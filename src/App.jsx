@@ -13,7 +13,7 @@ function App() {
     <>
       <ToastContainer />
       <Routes>
-          <Route path="/" element={
+          <Route exact path="/" element={
             <ProtectedAuthRoute>
                 <Signup/>
             </ProtectedAuthRoute>
