@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="py-4 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <nav className="py-4 text-white bg-slate-800">
       <div className="container flex items-center justify-between px-4 mx-auto sm:px-6 lg:px-8">
         <h1 className="text-xl font-semibold">Event Management</h1>
         <div className="bg-gray-200 rounded-full flex items-center px-2 w-full sm:w-[400px] lg:w-[500px] ml-4 sm:ml-8">
