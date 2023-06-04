@@ -6,15 +6,13 @@ import {ToastContainer} from "react-toastify";
 import {Routes,Route} from "react-router-dom";
 import ProtectedAuthRoute from "./utils/ProtectedAuthRoute";
 import ProtectedUserRoute from "./utils/ProtectedUserRoute.jsx";
-import Profile from "./components/Profile.jsx";
+import Profile from "./components/Home/components/Profile.jsx";
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <ToastContainer />
       <Routes>
-          <Route exact path="/" element={
+          <Route path="/signup" element={
             <ProtectedAuthRoute>
                 <Signup/>
             </ProtectedAuthRoute>

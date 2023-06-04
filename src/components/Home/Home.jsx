@@ -1,16 +1,16 @@
-import React from 'react'
-import Navbar from '../Navbar.jsx'
-import PublicEvents from '../PublicEvents.jsx'
-import Cards from '../Cards.jsx'
-import Footer from '../Footer.jsx'
-import Divider from '../Divider.jsx'
+// import React from 'react'
+import Navbar from './components/Navbar.jsx'
+import PublicEvents from './components/PublicEvents.jsx'
+import Cards from './components/Cards.jsx'
+import Footer from './components/Footer.jsx'
+import Divider from './components/Divider.jsx'
 import { useBearStore } from '../../store/index';
 
 const Home = () => {
   const store = useBearStore();
   console.log(store.isAuthenticated);
   return (
-    <div>
+    <div className='bg-slate-800'>
       <Navbar />
       <PublicEvents />
       <Divider />
