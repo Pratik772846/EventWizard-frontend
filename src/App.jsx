@@ -6,6 +6,7 @@ import {ToastContainer} from "react-toastify";
 import {Routes,Route} from "react-router-dom";
 import ProtectedAuthRoute from "./utils/ProtectedAuthRoute";
 import ProtectedUserRoute from "./utils/ProtectedUserRoute.jsx";
+import Profile from "./components/Profile.jsx";
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -26,6 +27,12 @@ function App() {
           <Route path="/home" element={
             <ProtectedUserRoute>
               <Home/>
+            </ProtectedUserRoute>
+            }/>
+
+          <Route path="/profile" element={
+            <ProtectedUserRoute>
+              <Profile/>
             </ProtectedUserRoute>
             }/>
         </Routes>
