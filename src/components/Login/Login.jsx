@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import { useBearStore } from '../../store/index.js';
+import Navbar from '../LandingPage/components/Navbar.jsx';
+import Footer from '../Footer/Footer.jsx';
 const Login = () => {
 
   const [details, setDetails] = React.useState({
@@ -90,46 +92,54 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-color1  to-color2 h-screen flex flex-col">
-        <nav className="h-20 md:h-32 lg:h-32 " >Logo</nav>
+    <div className="bg-white  flex flex-col">
+        <Navbar/> 
        
-        <div className="flex flex-grow justify-center items-center">
-          <div className="flex flex-col justify-center items-center gap-5 hover:scale-110">
-            <p className='text-4xl font-header text-white'>Login </p>
+        <div className="flex flex-col md:flex-col lg:flex-row gap-10 md:gap-10 lg:gap-0 flex-grow justify-around items-center my-28">
+          <div className="flex flex-col justify-center items-center gap-5 ">
+            <p className='text-4xl font-header text-black'>Login </p>
             <form  onSubmit={handleSubmit} className='flex flex-col gap-5'>
             
-            
-              <input 
-                type="email" 
-                name="email"
-                value={details.email}
-                autoComplete="off"
-                placeholder="   EMAIL*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                  type="email" 
+                  name="email"
+                  value={details.email}
+                  autoComplete="off"
+                  placeholder="EMAIL*"
+                  className='h-11 w-96 rounded-md bg-white focus:outline-none  text-lg pl-3 placeholder-black'
+                  onChange={handleChange}
+                />
+              </div>
+              
               {/* {errors.email && <span>{errors.email}</span>} */}
+              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                  type="password" 
+                  name="password"
+                  value={details.password}
+                  autoComplete="off"
+                  placeholder="PASSWORD*"
+                  className='h-11 w-96 rounded-md  bg-white  focus:outline-none  text-lg pl-3 placeholder-black'
+                  onChange={handleChange}
+                />
+              </div>
+              
 
-              <input 
-                type="password" 
-                name="password"
-                value={details.password}
-                autoComplete="off"
-                placeholder="  PASSWORD*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
-
-              <button type="submit" className='w-96 h-12 rounded-3xl bg-white text-xl justify-center text-slate-400'>LOGIN</button>
+              <button type="submit" className='w-96 h-12 rounded-3xl bg-gradient-to-r from-color1  to-color2 text-xl justify-center text-black'>LOGIN</button>
 
             </form>
             
             <span >
               Create Account 
-              <a href="/" className='text-color4 pl-5'>Signup</a>
+              <a href="/signup" className='text-color1 pl-2'>Signup</a>
             </span>
           </div>
+          <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685900759/EventWizard/login_dekh49.jpg" 
+            alt="logo" 
+            className='w-80 md:w-2/5 lg:w-1/4 h-92 rounded-md'/>
         </div>
+        <Footer/>
         
         
     </div>

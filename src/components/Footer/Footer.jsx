@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className='grid max-w-full gap-8 px-4 py-16 mx-auto mb-0 text-gray-100 bg-slate-800 lg:grid-cols-3'>
+    <div className='grid max-w-full gap-8 px-4 py-16 mx-auto mb-0 text-gray-100 bg-gradient-to-r from-color1 to-color2 lg:grid-cols-3'>
       <div className='flex flex-col items-start'>
         <h1 className='w-full text-3xl font-bold text-[#00df9a]'>Eventy.</h1>
         <p className='py-4 text-left'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste repellat consequatur libero reiciendis, blanditiis accusantium.</p>

@@ -2,6 +2,8 @@ import React from 'react'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
+import Navbar from '../LandingPage/components/Navbar';
+import Footer from '../Footer/Footer';
 
 const cloudName = 'dv8zwrzop';
 const Signup = () => {
@@ -145,59 +147,73 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-color1  to-color2 h-screen flex flex-col">
-        <nav className="h-20 md:h-32 lg:h-32 " >Logo</nav>
+    <div className="bg-white flex flex-col">
+        <Navbar/>
        
-        <div className="flex flex-grow justify-center items-center">
-          <div className="flex flex-col justify-center items-center gap-5 hover:scale-110">
-            <p className='text-4xl font-header text-white'>Create Account</p>
+        <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-5 md:gap-5 lg:gap-0 justify-around items-center my-20">
+          <div className="flex flex-col justify-center items-center gap-5 ">
+            <p className='text-4xl font-header text-black'>Create Account</p>
             <form  onSubmit={handleSubmit} className='flex flex-col gap-5'>
-            
-              <input 
-                type="text" 
-                name="name"
-                value={details.name} 
-                autoComplete="off"
-                placeholder="    NAME *"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+
+              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                  type="text" 
+                  name="name"
+                  value={details.name} 
+                  autoComplete="off"
+                  placeholder="NAME *"
+                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3  placeholder-black'
+                  onChange={handleChange}
+                />
+              </div>
+              
                {/* {errors.name && <span className='transition duration-100'>{errors.name}</span>} */}
-            
-              <input 
-                type="email" 
-                name="email"
-                value={details.email}
-                autoComplete="off"
-                placeholder="   EMAIL*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                 type="email" 
+                 name="email"
+                 value={details.email}
+                 autoComplete="off"
+                 placeholder="EMAIL*"
+                 className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                 onChange={handleChange}
+                />
+              </div>
+              
               {/* {errors.email && <span>{errors.email}</span>} */}
 
-              <input 
-                type="password" 
-                name="password"
-                value={details.password}
-                autoComplete="off"
-                placeholder="  PASSWORD*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                  type="password" 
+                  name="password"
+                  value={details.password}
+                  autoComplete="off"
+                  placeholder="PASSWORD*"
+                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                  onChange={handleChange}
+                />
+              </div>
+              
               {/* {errors.password && <span>{errors.password}</span>} */}
 
               
-              <input 
-                type="password" 
-                name="cnfmPassword"
-                value={details.cnfmPassword}
-                autoComplete="off"
-                placeholder="  CONFIRM PASSWORD*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+
+              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                  type="password" 
+                  name="cnfmPassword"
+                  value={details.cnfmPassword}
+                  autoComplete="off"
+                  placeholder="CONFIRM PASSWORD*"
+                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                  onChange={handleChange}
+                />
+              </div>
+              
               {/* {errors.cnfmPassword && <span>{errors.cnfmPassword}</span>} */}
               
+
+
               <input 
                 type="file" 
                 // accept="image/*" 
@@ -207,28 +223,35 @@ const Signup = () => {
               {/* <span className='text-xl text-white '>Upload Image</span>
                */}
                {/* <button className='h-10 rounded-md border-2 border-white text-white text-xl' onSubmit={handleImageUpload}>Upload Image</button> */}
-              <input 
-                type="text" 
-                name='contact'
-                value={details.contact} 
-                autoComplete="off"
-                placeholder="  CONTACT NUMBER*"
-                className='h-11 w-96 rounded-md border-2 border-white focus:outline-none focus:border-color3 text-lg bg-transparent placeholder-white'
-                onChange={handleChange}
-              />
+
+               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+                <input 
+                 type="text" 
+                 name='contact'
+                 value={details.contact} 
+                 autoComplete="off"
+                 placeholder="  CONTACT NUMBER*"
+                 className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                 onChange={handleChange}
+                />
+              </div>
+              
               {errors.contact && <span>{errors.contact}</span>}
 
-              <button type="submit" className='w-96 h-12 rounded-3xl bg-white text-xl justify-center text-slate-400'>CREATE</button>
+              <button type="submit" className='w-96 h-12 rounded-3xl bg-gradient-to-r from-color1  to-color2 text-xl justify-center text-white'>CREATE</button>
 
             </form>
             
             <span >
               Already have an Account?
-              <a href="/login" className='text-color4 pl-5'>Login</a>
+              <a href="/login" className='text-color1 pl-5'>Login</a>
             </span>
           </div>
+          <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685904375/EventWizard/signup_x0lkoc.jpg" 
+            alt="logo"
+            className='w-80 md:w-1/2 lg:w-2/5' />
         </div>
-        
+        <Footer/>
         
     </div>
   )

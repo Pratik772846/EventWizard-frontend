@@ -2,7 +2,7 @@
 import Navbar from './components/Navbar.jsx'
 import PublicEvents from './components/PublicEvents.jsx'
 import Cards from './components/Cards.jsx'
-import Footer from './components/Footer.jsx'
+import Footer from '.././Footer/Footer.jsx'
 import Divider from './components/Divider.jsx'
 import { useBearStore } from '../../store/index';
 
