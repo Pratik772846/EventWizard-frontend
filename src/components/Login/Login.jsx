@@ -71,7 +71,7 @@ const Login = () => {
             
             // await Login();
             state.isAuthenticated = true;
-            localStorage.setItem('isAuthenticated',true);
+            sessionStorage.setItem('isAuthenticated',true);
             console.log(state);
             console.log(state.isAuthenticated)
             // console.log(state.isAuthenticated);
