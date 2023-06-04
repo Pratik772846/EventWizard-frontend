@@ -1,11 +1,8 @@
 import React from 'react'
-import Navbar from '../Navbar'
-import Footer from '../Footer'
-import Cards from '../Cards'
-import PublicEvents from '../PublicEvents'
-import Divider from '../Divider'
 
 const Home = () => {
+  const store = useBearStore();
+  console.log(store.isAuthenticated);
   return (
     <div>
       <Navbar />
