@@ -7,11 +7,19 @@ import {Routes,Route} from "react-router-dom";
 import ProtectedAuthRoute from "./utils/ProtectedAuthRoute";
 import ProtectedUserRoute from "./utils/ProtectedUserRoute.jsx";
 import Profile from "./components/Home/components/Profile.jsx";
+import LandingPage from "./components/LandingPage/LandingPage.jsx";
 function App() {
   return (
     <>
       <ToastContainer />
       <Routes>
+          <Route path="/" element={
+            <ProtectedAuthRoute>
+              <LandingPage/>
+            </ProtectedAuthRoute>
+          }>
+
+          </Route>
           <Route path="/signup" element={
             <ProtectedAuthRoute>
                 <Signup/>
