@@ -10,7 +10,7 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Object containing user profile data
+  
   const userProfile = {
     name: 'John Doe',
     email: 'johndoe@example.com',
