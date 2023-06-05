@@ -2,8 +2,7 @@ import React from 'react'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from "axios";
-import Navbar from '../LandingPage/components/Navbar';
-import Footer from '../Footer/Footer';
+import  {Link} from "react-router-dom";
 
 const cloudName = 'dv8zwrzop';
 const Signup = () => {
@@ -148,7 +147,6 @@ const Signup = () => {
 
   return (
     <div className="bg-white flex flex-col">
-        <Navbar/>
        
         <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-5 md:gap-5 lg:gap-0 justify-around items-center my-20">
           <div className="flex flex-col justify-center items-center gap-5 ">
@@ -167,7 +165,6 @@ const Signup = () => {
                 />
               </div>
               
-               {/* {errors.name && <span className='transition duration-100'>{errors.name}</span>} */}
                <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
                 <input 
                  type="email" 
@@ -179,8 +176,6 @@ const Signup = () => {
                  onChange={handleChange}
                 />
               </div>
-              
-              {/* {errors.email && <span>{errors.email}</span>} */}
 
               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
                 <input 
@@ -194,10 +189,6 @@ const Signup = () => {
                 />
               </div>
               
-              {/* {errors.password && <span>{errors.password}</span>} */}
-
-              
-
               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
                 <input 
                   type="password" 
@@ -210,7 +201,6 @@ const Signup = () => {
                 />
               </div>
               
-              {/* {errors.cnfmPassword && <span>{errors.cnfmPassword}</span>} */}
               
 
 
@@ -220,8 +210,6 @@ const Signup = () => {
                 placeholder="upload Image"
                 onChange={onImageChange} 
               />
-              {/* <span className='text-xl text-white '>Upload Image</span>
-               */}
                {/* <button className='h-10 rounded-md border-2 border-white text-white text-xl' onSubmit={handleImageUpload}>Upload Image</button> */}
 
                <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
@@ -244,14 +232,13 @@ const Signup = () => {
             
             <span >
               Already have an Account?
-              <a href="/login" className='text-color1 pl-5'>Login</a>
+              <Link to="/login" className='text-color1 pl-2' preventScrollReset={true}>Login</Link>
             </span>
           </div>
           <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685904375/EventWizard/signup_x0lkoc.jpg" 
             alt="logo"
             className='w-80 md:w-1/2 lg:w-2/5' />
         </div>
-        <Footer/>
         
     </div>
   )

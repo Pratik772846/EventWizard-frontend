@@ -7,40 +7,44 @@ import {Routes,Route} from "react-router-dom";
 import ProtectedAuthRoute from "./utils/ProtectedAuthRoute";
 import ProtectedUserRoute from "./utils/ProtectedUserRoute.jsx";
 import Profile from "./components/Home/components/Profile.jsx";
+import Dashboard from "./components/LandingPage/main.jsx";
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 function App() {
   return (
     <>
       <ToastContainer />
       <Routes>
-          <Route path="/" element={
-            <ProtectedAuthRoute>
-              <LandingPage/>
-            </ProtectedAuthRoute>
-          }>
 
-          </Route>
-          <Route path="/signup" element={
-            <ProtectedAuthRoute>
-                <Signup/>
-            </ProtectedAuthRoute>
+        <Route path="/" element={<Dashboard/>}>
+            <Route index element={
+              <ProtectedAuthRoute>
+                <LandingPage/>
+              </ProtectedAuthRoute>
             } />
-          <Route path="/login" element={
-            <ProtectedAuthRoute>
-              <Login />
-            </ProtectedAuthRoute>} />
+            <Route
+              path="login"
+              element={<ProtectedAuthRoute>
+                <Login />
+              </ProtectedAuthRoute>}
+            />
+            <Route path="signup" element={
+                <ProtectedAuthRoute>
+                  <Signup />
+                </ProtectedAuthRoute>} />
+        </Route>
             
-          <Route path="/home" element={
-            <ProtectedUserRoute>
-              <Home/>
-            </ProtectedUserRoute>
-            }/>
+        <Route path="/home" element={
+          <ProtectedUserRoute>
+            <Home/>
+          </ProtectedUserRoute>
+          }/>
 
-          <Route path="/profile" element={
-            <ProtectedUserRoute>
-              <Profile/>
-            </ProtectedUserRoute>
-            }/>
+        <Route path="/profile" element={
+          <ProtectedUserRoute>
+            <Profile/>
+          </ProtectedUserRoute>
+          }/>
+          
         </Routes>
     </>
   )

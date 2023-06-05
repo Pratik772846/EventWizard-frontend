@@ -1,10 +1,7 @@
-// import React from 'react'
-import Footer from "../Footer/Footer.jsx";
-import Navbar from "./components/Navbar.jsx";
+import { Link } from "react-router-dom"
+
 const LandingPage = () => {
   return (
-    <div>
-      <Navbar/>
         
       <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row justify-around uppercase items-center my-20 " >
         <span className="max-w-4xl ">
@@ -13,11 +10,16 @@ const LandingPage = () => {
           <br />
           <p className="text-2xl mx-auto  text-center pt-5">a platform to manage your events</p>
           <br />
-          <a href="/login" className="flex justify-center">
+          {/* <a href="login" className="flex justify-center">
+          <button className="bg-gradient-to-r from-color1  to-color2 text-white font-mono py-2 px-6 border-b-4 border-color1 hover:border-color2 rounded text-2xl ">
+              Get Started
+            </button>
+          </a> */}
+          <Link to="/login" className="flex justify-center" preventScrollReset={true}>
             <button className="bg-gradient-to-r from-color1  to-color2 text-white font-mono py-2 px-6 border-b-4 border-color1 hover:border-color2 rounded text-2xl ">
               Get Started
             </button>
-          </a>
+          </Link>
         </span>
         
         <img 
@@ -27,12 +29,8 @@ const LandingPage = () => {
 
       </div>
 
-      <Footer/>
-           
-        
-        
-    </div>
   )
 }
 
 export default LandingPage
+

@@ -1,4 +1,4 @@
-// import React from 'react'
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -8,13 +8,21 @@ const Navbar = () => {
               <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685900315/EventWizard/evento_c.987980d92e74ea624578_thmmmv.png" 
               className="w-24 md:w-40 lg:w-52" alt="logo" />
             </a>
-            <div className="flex gap-5 md:gap-20 lg:gap-40">
-                <a href="/" className="text-2xl md:text-3xl lg:text-3xl">Home</a>
-                <a href="/" className="text-2xl md:text-3xl lg:text-3xl">Contact</a>
+            <div className=" flex  gap-5 md:gap-20 lg:gap-40">
+              <Link to="/" className='text-2xl md:text-3xl lg:text-3xl' preventScrollReset={true}>Home</Link>
+              <Link to="/" className='text-2xl md:text-3xl lg:text-3xl' preventScrollReset={true}>Services</Link>
+              <Link to="/" className='text-2xl md:text-3xl lg:text-3xl' preventScrollReset={true}>Contact</Link>
             </div>
+            
+            {/* <div className="hidden md:block">asdad</div> */
+            /*visible for screen greater than 768 px */}
+            {/* <div className="block md:hidden">q2qwewq</div> */
+            /*visible for screen less than 768 px */}
         </nav>
     </div>
   )
 }
 
 export default Navbar
+
+// GiHamburgerMenu
