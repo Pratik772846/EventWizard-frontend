@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <div>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </div>
   
 )
