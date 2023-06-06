@@ -10,6 +10,8 @@ import Profile from "./components/Home/components/Profile.jsx";
 import Dashboard from "./components/LandingPage/main.jsx";
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import EventCreation from "./components/Home/components/EventCreation.jsx";
+import Services from "./components/LandingPage/Services.jsx";
+import Contact from "./components/LandingPage/Contact.jsx";
 function App() {
   return (
     <>
@@ -20,6 +22,16 @@ function App() {
             <Route index element={
               <ProtectedAuthRoute>
                 <LandingPage/>
+              </ProtectedAuthRoute>
+            } />
+            <Route path="services" element={
+              <ProtectedAuthRoute>
+                <Services/>
+              </ProtectedAuthRoute>
+            } />
+            <Route path="contact" element={
+              <ProtectedAuthRoute>
+                <Contact/>
               </ProtectedAuthRoute>
             } />
             <Route
