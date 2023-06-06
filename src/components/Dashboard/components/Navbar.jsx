@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FiShoppingCart } from 'react-icons/fi';
 import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -57,12 +56,6 @@ const Navbar = () => {
 
       <div className="flex">
         <NavButton 
-          title="Cart" 
-          customFunction={() => handleClick('cart')} 
-          color={currentColor} 
-          icon={<FiShoppingCart />} 
-        />
-        <NavButton 
           title="Chat" 
           customFunction={() => handleClick('chat')} 
           color={currentColor} 
@@ -84,7 +77,7 @@ const Navbar = () => {
             {/* <img className="w-8 h-8 rounded-full" src={profile} alt="r" /> */}
             <p>
               <span className="text-gray-400 text-14">Hi, </span> {' '}
-              <span className="ml-1 font-bold text-gray-400 text-14">Zain</span>
+              <span className="ml-1 font-bold text-gray-400 text-14">Pranav</span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
