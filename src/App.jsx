@@ -9,6 +9,7 @@ import ProtectedUserRoute from "./utils/ProtectedUserRoute.jsx";
 import Profile from "./components/Home/components/Profile.jsx";
 import Dashboard from "./components/LandingPage/main.jsx";
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
+import EventCreation from "./components/Home/components/EventCreation.jsx";
 function App() {
   return (
     <>
@@ -42,6 +43,12 @@ function App() {
         <Route path="/profile" element={
           <ProtectedUserRoute>
             <Profile/>
+          </ProtectedUserRoute>
+          }/>
+
+          <Route path="/event-creation" element={
+          <ProtectedUserRoute>
+            <EventCreation/>
           </ProtectedUserRoute>
           }/>
           

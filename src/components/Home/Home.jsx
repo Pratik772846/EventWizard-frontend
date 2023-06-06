@@ -4,6 +4,8 @@ import PublicEvents from './components/PublicEvents.jsx'
 import Cards from './components/Cards.jsx'
 import Footer from '.././Footer/Footer.jsx'
 import Divider from './components/Divider.jsx'
+import CreateEvent from './components/CreateEvent.jsx'
+
 import { useBearStore } from '../../store/index';
 
 const Home = () => {
@@ -16,6 +18,9 @@ const Home = () => {
       <Divider />
       <br />
       <Cards />
+      <Divider />
+      <br />
+      <CreateEvent />
       <Divider />
       <br />
       <Footer />
