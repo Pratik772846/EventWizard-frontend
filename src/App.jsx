@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import EventCreation from "./components/Home/components/EventCreation.jsx";
 import Services from "./components/LandingPage/Services.jsx";
 import Contact from "./components/LandingPage/Contact.jsx";
+import Dash from "./components/Dashboard/Dashboard.jsx";
 function App() {
   return (
     <>
@@ -61,6 +62,12 @@ function App() {
           <Route path="/event-creation" element={
           <ProtectedUserRoute>
             <EventCreation/>
+          </ProtectedUserRoute>
+          }/>
+
+        <Route path="/dash" element={
+          <ProtectedUserRoute>
+            <Dash/>
           </ProtectedUserRoute>
           }/>
           
