@@ -53,11 +53,11 @@ function PublicEvents() {
               <img
                 src={slide.url}
                 alt="Event Slide"
-                className="rounded-md duration-200 hover:scale-105 md:w-full md:h-[550px] opacity-40 group-hover:opacity-80"
+                className="rounded-md duration-200 hover:scale-105 md:w-full md:h-[550px] opacity-40 group-hover:opacity-80 "
               />
               <div className="absolute text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                 <h2 className="text-3xl font-bold text-white">{slide.venue}</h2>
-                <p className="text-lg text-white">{slide.date}</p>
+                <p className="mt-4 text-lg text-white">{slide.date}</p>
                 <p className="text-lg text-white">Admin: {slide.admin}</p>
                 <button className="px-6 py-3 mt-4 font-semibold text-white bg-blue-500 rounded-lg">
                   Join Event
@@ -94,5 +94,3 @@ function PublicEvents() {
 }
 
 export default PublicEvents;
-
-
