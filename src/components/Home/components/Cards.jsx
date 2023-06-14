@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import Refresh from "../../../hooks/useRefreshtoken";
 
 const Cards = () => {
   const cards = [
@@ -24,27 +25,31 @@ const Cards = () => {
       
     },
     {
-        id: 3,
+        id: 4,
         venue: 'Venue 1',
         date: 'June 10, 2023',
         admin: 'John Doe',
         
       },
       {
-        id: 3,
+        id: 5,
         venue: 'Venue 1',
         date: 'June 10, 2023',
         admin: 'John Doe',
         
       },
       {
-        id: 3,
+        id: 6,
         venue: 'Venue 1',
         date: 'June 10, 2023',
         admin: 'John Doe',
         
       },
   ];
+
+  const handleClick = ()=>{
+    Refresh();
+  }
 
   return (
     <div  className="mb-4 text-white bg-color6 max-w-[1300px] m-auto">
@@ -62,7 +67,9 @@ const Cards = () => {
                 <p className="text-lg">Admin: {admin}</p>
               </div>
               <div className="flex items-center justify-center">
-                <button className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2">
+                <button 
+                  className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+                  onClick={handleClick}>
                   View
                 </button>
               </div>
