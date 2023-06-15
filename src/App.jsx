@@ -13,6 +13,9 @@ import EventCreation from "./components/Home/components/EventCreation.jsx";
 import Services from "./components/LandingPage/Services.jsx";
 import Contact from "./components/LandingPage/Contact.jsx";
 import Dash from "./components/Dashboard/Dashboard.jsx";
+import Details from "./components/Dashboard/components/Details.jsx";
+import Guests from "./components/Dashboard/components/Guests.jsx";
+
 function App() {
   return (
     <>
@@ -65,11 +68,24 @@ function App() {
           </ProtectedUserRoute>
           }/>
 
-        <Route path="/dash" element={
-          <ProtectedUserRoute>
-            <Dash/>
-          </ProtectedUserRoute>
-          }/>
+        <Route path="/dash/:id" element={<Dash/>}>
+            <Route index element={
+              <ProtectedUserRoute>
+                <Details/>
+              </ProtectedUserRoute>
+            } />
+            <Route
+              path="guests"
+              element={<ProtectedUserRoute>
+                <Guests/>
+              </ProtectedUserRoute>}
+            />
+        </Route>
+
+        
+          {/* If none of the above routes are matched, show 404 */}
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+
           
         </Routes>
     </>

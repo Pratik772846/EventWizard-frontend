@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+// import React from 'react';
+import { Link, NavLink,useParams } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { FiShoppingBag } from 'react-icons/fi';
@@ -7,6 +7,8 @@ import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
 
 const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
+
+  const {id} = useParams();
   const links = [
     {
       title: 'Dashboard',
@@ -53,7 +55,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
           <>
             <div className="flex items-center justify-between">
               <Link
-                to="/"
+                to="/home"
                 onClick={handleCloseSidebar}
                 className="flex items-center gap-3 mt-4 ml-3 text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
               >
@@ -70,6 +72,20 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
               </button>
             </div>
             <div className="mt-10">
+              <div>
+                <NavLink
+                      to={`/dash/${id}`}
+                      onClick={handleCloseSidebar}
+                      style={({ isActive }) => ({
+                        backgroundColor: isActive ? currentColor : '',
+                      })}
+                      className={({ isActive }) =>
+                        isActive ? activeLink : normalLink
+                      }
+                >
+                    <span className="capitalize">Details</span>
+                </NavLink>
+              </div>
               {links.map((item) => (
                 <div key={item.title}>
                   <p className="m-3 mt-4 text-gray-400 uppercase">
@@ -77,7 +93,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
                   </p>
                   {item.links.map((link) => (
                     <NavLink
-                      to={`/${link.name}`}
+                      to={`/dash/${id}/${link.name}`}
                       key={`/${link.name}`}
                       onClick={handleCloseSidebar}
                       style={({ isActive }) => ({
