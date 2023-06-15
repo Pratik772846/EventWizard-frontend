@@ -1,4 +1,4 @@
-// import React from 'react';
+import {useState,useEffect} from 'react';
 import axios from "axios";
 import Refresh from "../../../hooks/useRefreshtoken";
 
@@ -24,31 +24,12 @@ const Cards = () => {
       date: 'June 10, 2023',
       admin: 'John Doe',
       
-    },
-    // {
-    //     id: '6476ed81e5d704c1ee3e56d0',
-    //     venue: 'Venue 1',
-    //     date: 'June 10, 2023',
-    //     admin: 'John Doe',
-        
-    //   },
-    //   {
-    //     id: '6476ecafe5d704c1ee3e56cb',
-    //     venue: 'Venue 1',
-    //     date: 'June 10, 2023',
-    //     admin: 'John Doe',
-        
-    //   },
-    //   {
-    //     id: '64771347ac80f8efc3ba4a13',
-    //     venue: 'Venue 1',
-    //     date: 'June 10, 2023',
-    //     admin: 'John Doe',
-        
-    //   },
+    }
   ];
 
-  const handleClick = async()=>{
+  // const [events,setEvents] = useState([]);
+
+  const getEvents = async()=>{
     const accessToken= await Refresh();
     console.log(accessToken);
 
@@ -57,35 +38,33 @@ const Cards = () => {
 
     const config = {
       headers:{
-        'authorization' : accessToken
+        'authorization' : `Bearer ${accessToken}`
       }
     }
 
     try {
-      const events = await axios.post("https://eventwizard-backend.onrender.com/events",{
+      const response = await axios.post("http://localhost:3000/events",{
         id:userId
       },config);
-      console.log(events);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
-    // try {
-    //   const call = await axios.get("https://eventwizard-backend.onrender.com/events",{
-    //     headers: {
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   console.log(call);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+  }
+
+  useEffect(()=>{
+    getEvents();
+  },[]);
+
+  const handleClick = async()=>{
+    console.log("yoo!!!");
   }
 
   return (
     <div  className="mb-4 text-white bg-color6 max-w-[1300px] m-auto">
       <div className="flex flex-col w-full h-full max-w-screen-lg p-4 mx-auto">
         <div className="pt-10 pb-8 text-center">
-          <h2 className="uppercase py-6 text-center md:text-2xl tracking-[20px]">Upcoming Events</h2>
+          <h2 className="uppercase py-6 text-center md:text-2xl tracking-[20px]">Your Upcoming Events</h2>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3 sm:px-8 ">
