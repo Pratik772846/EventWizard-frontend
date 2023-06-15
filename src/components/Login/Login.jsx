@@ -72,6 +72,7 @@ const Login = () => {
             
             // await Login();
             state.isAuthenticated = true;
+            sessionStorage.setItem('id',response?.data?.id);
             sessionStorage.setItem('refreshToken',response?.data?.refreshToken);
             sessionStorage.setItem('isAuthenticated',true);
             console.log(state);
