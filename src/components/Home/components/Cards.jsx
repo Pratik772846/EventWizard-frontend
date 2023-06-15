@@ -1,54 +1,84 @@
 // import React from 'react';
+import axios from "axios";
 import Refresh from "../../../hooks/useRefreshtoken";
 
 const Cards = () => {
   const cards = [
     {
-      id: 1,
+      id: '6476ecafe5d704c1ee3e56cb',
       venue: 'Venue 1',
       date: 'June 1, 2023',
       admin: 'John Doe',
-     
+      
     },
     {
-      id: 2,
+      id: '6476ed81e5d704c1ee3e56d0',
       venue: 'Venue 1',
       date: 'June 5, 2023',
       admin: 'Jane Smith',
       
     },
     {
-      id: 3,
+      id: '64771347ac80f8efc3ba4a13',
       venue: 'Venue 1',
       date: 'June 10, 2023',
       admin: 'John Doe',
       
     },
-    {
-        id: 4,
-        venue: 'Venue 1',
-        date: 'June 10, 2023',
-        admin: 'John Doe',
+    // {
+    //     id: '6476ed81e5d704c1ee3e56d0',
+    //     venue: 'Venue 1',
+    //     date: 'June 10, 2023',
+    //     admin: 'John Doe',
         
-      },
-      {
-        id: 5,
-        venue: 'Venue 1',
-        date: 'June 10, 2023',
-        admin: 'John Doe',
+    //   },
+    //   {
+    //     id: '6476ecafe5d704c1ee3e56cb',
+    //     venue: 'Venue 1',
+    //     date: 'June 10, 2023',
+    //     admin: 'John Doe',
         
-      },
-      {
-        id: 6,
-        venue: 'Venue 1',
-        date: 'June 10, 2023',
-        admin: 'John Doe',
+    //   },
+    //   {
+    //     id: '64771347ac80f8efc3ba4a13',
+    //     venue: 'Venue 1',
+    //     date: 'June 10, 2023',
+    //     admin: 'John Doe',
         
-      },
+    //   },
   ];
 
-  const handleClick = ()=>{
-    Refresh();
+  const handleClick = async()=>{
+    const accessToken= await Refresh();
+    console.log(accessToken);
+
+    const userId  = sessionStorage.getItem('id');
+    console.log(userId);
+
+    const config = {
+      headers:{
+        'authorization' : accessToken
+      }
+    }
+
+    try {
+      const events = await axios.post("https://eventwizard-backend.onrender.com/events",{
+        id:userId
+      },config);
+      console.log(events);
+    } catch (error) {
+      console.error(error);
+    }
+    // try {
+    //   const call = await axios.get("https://eventwizard-backend.onrender.com/events",{
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //   })
+    //   console.log(call);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   return (
