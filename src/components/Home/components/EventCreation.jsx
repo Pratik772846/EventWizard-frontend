@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Refresh from '../../../hooks/useRefreshtoken.jsx';
 
 const EventCreation = () => {
   const [nameValue, setNameValue] = useState('');
@@ -14,47 +15,50 @@ const EventCreation = () => {
 
   const nameInputRef = useRef(null);
 
-  useEffect(() => {
-    nameInputRef.current.focus();
-  }, []);
+  const handleCreate = async () => {
+    if (!nameValue || !venueValue || !dateValue || !budgetValue || !descriptionValue || !adminEmailValue) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
 
-  // const handleCreate = async () => {
-  //   if (!nameValue || !venueValue || !dateValue || !budgetValue || !descriptionValue || !adminEmailValue) {
-  //     toast.error('Please fill in all required fields');
-  //     return;
-  //   }
-  
-  //   try {
-  //     const response = await axios.post('https://eventwizard-backend.onrender.com/events/create', {
-  //       name: nameValue,
-  //       venue: venueValue,
-  //       date: dateValue,
-  //       budget: budgetValue,
-  //       description: descriptionValue,
-  //       isPrivate: isPrivateValue,
-  //       isAdmin: isAdminValue,
-  //       adminEmail: adminEmailValue
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: 'Bearer YOUR_AUTH_TOKEN' // Replace with your actual authentication token
-  //       }
-  //     });
-  
-  //     const eventData = response.data;
-  
-     
-  //     const event = new Event(eventData);
-  //     const savedEvent = await event.save();
-  
-  //     console.log(savedEvent); 
-  //     console.log(response);
-  //     toast.success('Event created successfully');
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error('Failed to create event');
-  //   }
-  // };
+    
+
+    try {
+
+      const accessToken= await Refresh();
+    console.log(accessToken);
+      
+      // const response = await axios.post(
+      //   'https://eventwizard-backend.onrender.com/events/create',
+      //   {
+      //     name: nameValue,
+      //     venue: venueValue,
+      //     date: dateValue,
+      //     budget: budgetValue,
+      //     description: descriptionValue,
+      //     isPrivate: isPrivateValue,
+      //     isAdmin: isAdminValue,
+      //     adminEmail: adminEmailValue
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: `${accessToken}`
+      //     }
+      //   }
+      // );
+
+      // const eventData = response.data;
+
+      
+
+      // console.log(eventData);
+      // console.log(response);
+      toast.success('Event created successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to create event');
+    }
+  };
 
   return (
     <div className="flex items-center justify-center h-screen bg-color6">
@@ -79,7 +83,6 @@ const EventCreation = () => {
               type="text"
               value={venueValue}
               onChange={(e) => setVenueValue(e.target.value)}
-             
               className="w-full p-2 mt-1 border border-gray-300"
             />
           </label>
