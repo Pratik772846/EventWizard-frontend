@@ -29,7 +29,7 @@ const EventCreation = () => {
       console.log(accessToken);
       
       const response = await axios.post(
-        'http://localhost:3000/events/create',
+        'https://eventwizard-backend.onrender.com/events/create',
         {
           name: nameValue,
           venue: venueValue,
