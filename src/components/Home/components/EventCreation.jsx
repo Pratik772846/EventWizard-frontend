@@ -42,7 +42,7 @@ const EventCreation = () => {
       //   },
       //   {
       //     headers: {
-      //       Authorization: `${accessToken}`
+      //       Authorization: `Bearer ${accessToken}`
       //     }
       //   }
       // );
