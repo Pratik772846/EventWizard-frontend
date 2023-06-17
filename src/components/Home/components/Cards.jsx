@@ -22,7 +22,7 @@ const Cards = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/events",{
+      const response = await axios.post("https://eventwizard-backend.onrender.com/events",{
         id:userId
       },config);
       // console.log(response);

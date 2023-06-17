@@ -15,6 +15,7 @@ import Contact from "./components/LandingPage/Contact.jsx";
 import Dash from "./components/Dashboard/Dashboard.jsx";
 import Details from "./components/Dashboard/components/Details.jsx";
 import Guests from "./components/Dashboard/components/Guests.jsx";
+import HandleInvitaions from "./components/Home/components/Invitations/handleInvitations.jsx";
 
 function App() {
   return (
@@ -53,6 +54,12 @@ function App() {
         <Route path="/home" element={
           <ProtectedUserRoute>
             <Home/>
+          </ProtectedUserRoute>
+          }/>
+        
+        <Route path="/invitations" element={
+          <ProtectedUserRoute>
+            <HandleInvitaions/>
           </ProtectedUserRoute>
           }/>
 
