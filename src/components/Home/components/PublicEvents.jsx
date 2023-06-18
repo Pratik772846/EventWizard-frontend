@@ -1,24 +1,13 @@
 import  { useState,useEffect } from 'react';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
 import axios from 'axios';
 import Refresh from '../../../hooks/useRefreshtoken';
+import Shimmer from '../../Shimmer/Shimmer';
+import {Link} from "react-router-dom";
 
 function PublicEvents() {
-  const slides = [
-    {
-      venue: 'Event Venue 1',
-      date: 'June 10, 2023',
-      admin: 'John Doe',
-      url: 'https://img.freepik.com/premium-vector/show-light-stage-podium-scene-with-award-ceremony-purple-background-vector_3482-8515.jpg',
-    },
-    {
-      venue: 'Event Venue 2',
-      date: 'June 15, 2023',
-      admin: 'Jane Smith',
-      url: 'https://img.freepik.com/premium-vector/show-light-stage-podium-scene-with-award-ceremony-purple-background-vector_3482-8515.jpg',
-    },
-  ];
+  const [events,setEvents] = useState("");
+  const [filteredEvents,setFilteredEvents] = useState("");
+  const [searchText,setSearchText] = useState("");
 
   const getEvents = async()=>{
     const accessToken= await Refresh();
@@ -37,6 +26,8 @@ function PublicEvents() {
       const response = await axios.get("https://eventwizard-backend.onrender.com/events",config);
       // console.log(response);
       console.log(response?.data);
+      setEvents(response?.data);
+      setFilteredEvents(response?.data);
     } catch (error) {
       console.error(error);
     }
@@ -45,78 +36,89 @@ function PublicEvents() {
   useEffect(()=>{
     getEvents();
   },[]);
+  
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleChange = (e)=>{
+    console.log(e.target.value);
 
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
+    setSearchText(e.target.value);
+  }
 
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+  const handleSubmit = ()=>{
+    const filtered = events.filter((item)=> item?.name.includes(searchText));
+    console.log(filteredEvents);
+    setFilteredEvents(filtered);
+    console.log(events);
+    console.log(filteredEvents);
+  }
+  
+  const shimmerui = ()=>(
+    <div className='flex flex-wrap justify-center items-center pb-12'>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+      <Shimmer/>
+    </div>
+  )
 
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
-
-  return (
-    <div>
-      <h1 className="my-8 mb-4 font-sans text-5xl font-bold text-center text-white">Public Events</h1>
-
-      <div className="max-w-[1300px] h-[550px] w-full m-auto py-16 px-4 relative group my-6">
-        <div>
-          {slides.map((slide, slideIndex) => (
-            <div
-              key={slideIndex}
-              className={`w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] h-full rounded-2xl bg-center bg-cover duration-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-                slideIndex === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <img
-                src={slide.url}
-                alt="Event Slide"
-                className="rounded-md duration-200 hover:scale-105 md:w-full md:h-[550px] opacity-40 group-hover:opacity-80 "
-              />
-              <div className="absolute text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                <h2 className="text-3xl font-bold text-white">{slide.venue}</h2>
-                <p className="mt-4 text-lg text-white">{slide.date}</p>
-                <p className="text-lg text-white">Admin: {slide.admin}</p>
-                <button className="px-6 py-3 mt-4 font-semibold text-white bg-blue-500 rounded-lg">
-                  Join Event
-                </button>
+  const showEvents =()=>(
+    <div className="grid gap-8 md:grid-cols-3 sm:px-8 ">
+          {filteredEvents.map(({ _id, venue, name, description}) => (
+            <div key={_id} className="rounded-lg shadow-md shadow-gray-600 bg-slate-800">
+              <div className="text-center ">
+                <p className="py-5 text-2xl md:text-xl">{name}</p>
+                <p className="text-lg">{venue}</p>
+                <p className="text-lg">description: {description}</p>
+              </div>
+              <div className="flex items-center justify-center">
+                <Link to={`/dash/${_id}`} className="w-1/2 px-6 py-3 m-4 text-center text-xl duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2">
+                  View
+                </Link>
               </div>
             </div>
           ))}
-        </div>
+      </div>
+  )
 
-        <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-          <BsChevronCompactLeft onClick={prevSlide} size={30} color="white" />
-        </div>
 
-        <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-          <BsChevronCompactRight onClick={nextSlide} size={30} color="white" />
-        </div>
 
-        <div className="flex justify-center py-2 top-4">
-          {slides.map((slide, slideIndex) => (
-            <div
-              key={slideIndex}
-              onClick={() => goToSlide(slideIndex)}
-              className={`text-2xl cursor-pointer ${
-                slideIndex === currentIndex ? 'text-white' : 'text-gray-500'
-              }`}
-            >
-              <RxDotFilled />
-            </div>
-          ))}
+  console.log(filteredEvents);
+  // search functionality added . now to show the events use filteredEvents.map()
+
+  return (
+    <>
+      
+      {/* <h1 className="my-8 mb-4 font-sans text-5xl font-bold text-center text-white">Public Events</h1> */}
+      <div  className="mb-4 text-white bg-color6 max-w-[1300px] m-auto">
+      <div className="flex flex-col justify-center items-center w-full h-full max-w-screen-lg p-4 mx-auto">
+        <div className='flex flex-row gap-10 mt-10'>
+           <input 
+              type="text" 
+              name="events"
+              value={searchText}
+              autoComplete="off"
+              placeholder="Search for Public Events"
+              className='h-11 w-96 rounded-md text-red-400 focus:outline-none  text-lg pl-3 placeholder-black'
+              onChange={handleChange}
+            />
+            <button 
+              className="w-40 px-6  text-center text-xl duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+              onClick={handleSubmit}>
+              Search
+            </button>
         </div>
+        <div className="pt-10  text-center">
+          <h2 className="uppercase py-6 text-center md:text-2xl tracking-[20px]">Public Events</h2>
+        </div>
+        {/* {shimmerui()} */}
+        {filteredEvents.length===0?shimmerui():showEvents()}
       </div>
     </div>
+    </>
   );
 }
 

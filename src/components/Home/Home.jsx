@@ -13,8 +13,11 @@ const Home = () => {
   const store = useBearStore();
   console.log(store.isAuthenticated);
   return (
-    <div className='bg-slate-800'>
+    <div className='bg-slate-100'>
       <Navbar />
+      <CreateEvent />
+      <Divider />
+      <br />
       <PublicEvents />
       <Invitations/>
       <Divider />
@@ -22,9 +25,7 @@ const Home = () => {
       <Cards />
       <Divider />
       <br />
-      <CreateEvent />
-      <Divider />
-      <br />
+      
       <Footer />
     </div>
   )
