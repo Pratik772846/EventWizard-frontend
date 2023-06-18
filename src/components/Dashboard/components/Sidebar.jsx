@@ -1,12 +1,26 @@
-// import React from 'react';
-import { Link, NavLink,useParams } from 'react-router-dom';
+import {useState} from 'react';
+import { Link, NavLink,useParams} from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { FiShoppingBag } from 'react-icons/fi';
 import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
+import { useEffect } from 'react';
 
-const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
+const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize , message }) => {
+
+  console.log(message);
+  const [admin,setAdmin] = useState(false);
+
+  const userId  = sessionStorage.getItem('id');
+  console.log(userId);
+
+  console.log(admin);
+  useEffect(()=>{
+    if(message?.adminId===userId){
+      setAdmin(true);
+    }
+  },[message])
 
   const {id} = useParams();
   const links = [
@@ -45,6 +59,24 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
   const normalLink =
     'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
 
+  const InviteUsers = ()=>{
+    return(
+      <div>
+        <NavLink
+          to={`/dash/${id}/invite_users`}
+          onClick={handleCloseSidebar}
+          style={({ isActive }) => ({
+            backgroundColor: isActive ? currentColor : '',
+          })}
+          className={({ isActive }) =>
+            isActive ? activeLink : normalLink
+          }
+        >
+          <span className="capitalize">Invite Users</span>
+        </NavLink>
+      </div>
+    )
+  }
   return (
     <div className="h-screen pb-10 ml-3">
       <div
@@ -109,6 +141,8 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize }) => {
                   ))}
                 </div>
               ))}
+              {admin?InviteUsers() : <></>}
+              
             </div>
           </>
         )}
