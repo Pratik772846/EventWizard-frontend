@@ -6,7 +6,7 @@ import Refresh from "../../hooks/useRefreshtoken.jsx";
 import axios from "axios";
 
 const App = () => {
-  const currentColor = ' cyan ';
+  const currentColor = 'cyan';
   const [activeMenu, setActiveMenu] = React.useState(true);
   const [screenSize, setScreenSize] = React.useState(window.innerWidth);
   const [details,setDetails] = React.useState("sddddd");
@@ -57,7 +57,7 @@ const App = () => {
   return (
     <>
       <Navbar currentColor={currentColor} screenSize={screenSize} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-      <div className='w-full flex flex-row'>
+      <div className='flex flex-row w-full'>
         <div className='w-1/5'>
           <Sidebar 
             activeMenu={activeMenu} 
