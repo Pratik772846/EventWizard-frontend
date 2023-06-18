@@ -1,4 +1,5 @@
 import React from 'react';
+import {Outlet} from "react-router-dom";
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import LineChart from './components/LineChart';
@@ -21,15 +22,12 @@ const App = () => {
   return (
     <>
       <Navbar currentColor={currentColor} screenSize={screenSize} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-      <div className="flex">
-        <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} currentColor={currentColor} screenSize={screenSize} />
-        <div className="flex flex-col items-center p-10">
-          <div className="w-[1000px]">
-            <LineChart />
-          </div>
-          <div className="w-[1000px]">
-            <StackChart />
-          </div>
+      <div className='flex flex-row w-full'>
+        <div className='w-1/5'>
+          <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} currentColor={currentColor} screenSize={screenSize} />
+        </div>
+        <div className='w-4/5'>
+          <Outlet/>
         </div>
       </div>
     </>

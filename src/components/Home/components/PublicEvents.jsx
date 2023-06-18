@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import  { useState,useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
+import axios from 'axios';
+import Refresh from '../../../hooks/useRefreshtoken';
 
 function PublicEvents() {
   const slides = [
@@ -16,8 +18,33 @@ function PublicEvents() {
       admin: 'Jane Smith',
       url: 'https://img.freepik.com/premium-vector/show-light-stage-podium-scene-with-award-ceremony-purple-background-vector_3482-8515.jpg',
     },
-    
   ];
+
+  const getEvents = async()=>{
+    const accessToken= await Refresh();
+    console.log(accessToken);
+
+    const userId  = sessionStorage.getItem('id');
+    console.log(userId);
+
+    const config = {
+      headers:{
+        'authorization' : `Bearer ${accessToken}`
+      }
+    }
+
+    try {
+      const response = await axios.get("https://eventwizard-backend.onrender.com/events",config);
+      // console.log(response);
+      console.log(response?.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(()=>{
+    getEvents();
+  },[]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
