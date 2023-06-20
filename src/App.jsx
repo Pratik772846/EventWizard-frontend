@@ -17,6 +17,7 @@ import Details from "./components/Dashboard/components/Details.jsx";
 import Guests from "./components/Dashboard/components/Guests.jsx";
 import HandleInvitaions from "./components/Home/components/Invitations/handleInvitations.jsx";
 import EditProfile from "./components/Home/components/EditProfile.jsx";
+import Invite from "./components/Dashboard/components/Invite.jsx";
 
 function App() {
   return (
@@ -92,6 +93,12 @@ function App() {
               path="guests"
               element={<ProtectedUserRoute>
                 <Guests/>
+              </ProtectedUserRoute>}
+            />
+            <Route
+              path="invite_users"
+              element={<ProtectedUserRoute>
+                <Invite/>
               </ProtectedUserRoute>}
             />
         </Route>

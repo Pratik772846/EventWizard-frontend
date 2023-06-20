@@ -1,10 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams ,useOutletContext} from "react-router-dom";
 const Details = () =>{
-    const id = useParams();
+
+    const {id} = useParams();
     console.log(id);
+    const [details,setDetails] = useOutletContext();
+    console.log(details);
     return(
-        <>details
-        {`  id is : ${id.id}`}</>
+        <div className="h-full bg-color6 flex flex-col justify-center items-center">
+            <span></span>
+        </div>
     )
 }
 
