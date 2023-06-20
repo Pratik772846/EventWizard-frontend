@@ -8,11 +8,11 @@ const cloudName = 'dv8zwrzop';
 const Signup = () => {
 
   const [details, setDetails] = React.useState({
-    name: "Pratik",
-    email: "singhpratik087015@gmail.com",
-    password: "123456",
-    cnfmPassword: "123456",
-    contact: "6204636425",
+    name: "",
+    email: "",
+    password: "",
+    cnfmPassword: "",
+    contact: "",
     imageURL:""
   });
   
