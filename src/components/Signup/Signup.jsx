@@ -125,8 +125,8 @@ const Signup = () => {
           name:details.name,
           email:details.email,
           password:details.password,
-          contact:details.contact,
-          imageURL:details.imageURL
+          contact:details.contact_number,
+          imageURL:details.image
           });
           console.log(response.data.message);
           toast(response.data.message);
@@ -146,57 +146,57 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col">
+    <div className="flex flex-col bg-white">
        
-        <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-5 md:gap-5 lg:gap-0 justify-around items-center my-20">
-          <div className="flex flex-col justify-center items-center gap-5 ">
-            <p className='text-4xl font-header text-black'>Create Account</p>
+        <div className="flex flex-col-reverse items-center justify-around gap-5 my-20 md:flex-col-reverse lg:flex-row md:gap-5 lg:gap-0">
+          <div className="flex flex-col items-center justify-center gap-5 ">
+            <p className='text-4xl text-black font-header'>Create Account</p>
             <form  onSubmit={handleSubmit} className='flex flex-col gap-5'>
 
-              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+              <div className='p-1 rounded-lg bg-gradient-to-r from-color1 to-color2 '>
                 <input 
                   type="text" 
                   name="name"
                   value={details.name} 
                   autoComplete="off"
                   placeholder="NAME *"
-                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3  placeholder-black'
+                  className='pl-3 text-lg placeholder-black rounded-md h-11 w-96 focus:outline-none'
                   onChange={handleChange}
                 />
               </div>
               
-               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+               <div className='p-1 rounded-lg bg-gradient-to-r from-color1 to-color2 '>
                 <input 
                  type="email" 
                  name="email"
                  value={details.email}
                  autoComplete="off"
                  placeholder="EMAIL*"
-                 className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                 className='pl-3 text-lg placeholder-black rounded-md h-11 w-96 focus:outline-none'
                  onChange={handleChange}
                 />
               </div>
 
-              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+              <div className='p-1 rounded-lg bg-gradient-to-r from-color1 to-color2 '>
                 <input 
                   type="password" 
                   name="password"
                   value={details.password}
                   autoComplete="off"
                   placeholder="PASSWORD*"
-                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                  className='pl-3 text-lg placeholder-black rounded-md h-11 w-96 focus:outline-none'
                   onChange={handleChange}
                 />
               </div>
               
-              <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+              <div className='p-1 rounded-lg bg-gradient-to-r from-color1 to-color2 '>
                 <input 
                   type="password" 
                   name="cnfmPassword"
                   value={details.cnfmPassword}
                   autoComplete="off"
                   placeholder="CONFIRM PASSWORD*"
-                  className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                  className='pl-3 text-lg placeholder-black rounded-md h-11 w-96 focus:outline-none'
                   onChange={handleChange}
                 />
               </div>
@@ -210,29 +210,29 @@ const Signup = () => {
                 placeholder="upload Image"
                 onChange={onImageChange} 
               />
-               {/* <button className='h-10 rounded-md border-2 border-white text-white text-xl' onSubmit={handleImageUpload}>Upload Image</button> */}
+               {/* <button className='h-10 text-xl text-white border-2 border-white rounded-md' onSubmit={handleImageUpload}>Upload Image</button> */}
 
-               <div className='bg-gradient-to-r from-color1  to-color2 p-1 rounded-lg '>
+               <div className='p-1 rounded-lg bg-gradient-to-r from-color1 to-color2 '>
                 <input 
                  type="text" 
                  name='contact'
                  value={details.contact} 
                  autoComplete="off"
                  placeholder="  CONTACT NUMBER*"
-                 className='h-11 w-96 rounded-md  focus:outline-none  text-lg pl-3 placeholder-black'
+                 className='pl-3 text-lg placeholder-black rounded-md h-11 w-96 focus:outline-none'
                  onChange={handleChange}
                 />
               </div>
               
               {errors.contact && <span>{errors.contact}</span>}
 
-              <button type="submit" className='w-96 h-12 rounded-3xl bg-gradient-to-r from-color1  to-color2 text-xl justify-center text-white'>CREATE</button>
+              <button type="submit" className='justify-center h-12 text-xl text-white w-96 rounded-3xl bg-gradient-to-r from-color1 to-color2'>CREATE</button>
 
             </form>
             
             <span >
               Already have an Account?
-              <Link to="/login" className='text-color1 pl-2' preventScrollReset={true}>Login</Link>
+              <Link to="/login" className='pl-2 text-color1' preventScrollReset={true}>Login</Link>
             </span>
           </div>
           <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685904375/EventWizard/signup_x0lkoc.jpg" 
