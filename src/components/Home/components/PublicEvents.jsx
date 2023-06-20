@@ -68,7 +68,7 @@ function PublicEvents() {
   const showEvents =()=>(
     <div className="grid gap-8 md:grid-cols-3 sm:px-8 ">
           {filteredEvents.map(({ _id, venue, name, description}) => (
-            <div key={_id} className="rounded-lg shadow-md shadow-gray-600 bg-slate-800">
+            <div key={_id} className="rounded-lg shadow-md shadow-gray-600 bg-slate-800 w-72">
               <div className="text-center ">
                 <p className="py-5 text-2xl md:text-xl">{name}</p>
                 <p className="text-lg">{venue}</p>

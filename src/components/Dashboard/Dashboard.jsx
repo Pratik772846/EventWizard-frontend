@@ -57,8 +57,8 @@ const App = () => {
   return (
     <>
       <Navbar currentColor={currentColor} screenSize={screenSize} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-      <div className='flex flex-row w-full'>
-        <div className='w-1/5'>
+      <div className='flex flex-row  w-full'>
+        <div className='w-1/5 md:w-1/3 lg:w-1/5'>
           <Sidebar 
             activeMenu={activeMenu} 
             setActiveMenu={setActiveMenu} 
@@ -66,7 +66,7 @@ const App = () => {
             screenSize={screenSize} 
             message={details}/>
         </div>
-        <div className='w-4/5'>
+        <div className='w-4/5 md:w-2/3 lg:w-4/5 '>
           <Outlet context={[details,setDetails]}/>
         </div>
       </div>
