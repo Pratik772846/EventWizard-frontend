@@ -2,19 +2,48 @@ import { useEffect,useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Shimmer from "../../Shimmer/Shimmer";
 import logo from "../../../assets/logo.jpg";
-
+import ReactModal from "react-modal";
+import Profile from "./Profile";
+import {ImCross} from "react-icons/im";
+// import {ImHome} from "react-icons/im";
+// ReactModal.setAppElement('#yourAppElement');
 const Guests = ()=>{
     const [details,setDetails] = useOutletContext();
     const [guests,setGuests] = useState("");
-    // console.log(details);
-    // const guests = details?.guests;
-    console.log(details?.guests);
+    const [showModal,setShowModal] = useState(false);
+    const [user,setUser] = useState("");
+     
+    const handleOpenModal = ()=>{
+      setShowModal(true);
+    }
+    const handleCloseModal = ()=>{
+      setShowModal(false);
+    }
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      // subtitle.style.color = '#f00';
+    }
+
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
+    
+
     useEffect(()=>{
         setGuests(details?.guests);
-    },[])
+    },[details?.guests])
 
     const handleClick = (userId)=>{
       console.log(userId);
+      setUser(userId);
+      handleOpenModal();
     }
     
 
@@ -31,6 +60,8 @@ const Guests = ()=>{
         </div>
     )
 
+    
+
     const showGuests=()=>(
         <div className="flex flex-row flex-wrap justify-center items-center gap-20  py-10">
         {guests.map(({ _id,userId, name }) => (
@@ -46,6 +77,22 @@ const Guests = ()=>{
             </button>
           </div>
         ))}
+        <ReactModal
+          isOpen={showModal}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={handleCloseModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+          ariaHideApp={false}>
+            <div className="flex flex-col">
+              <div className="flex justify-end pb-5">
+                <button onClick={handleCloseModal} className="text-red-600"><ImCross/></button>
+              </div>
+              
+              <Profile
+              userId={user}/>
+            </div>
+          </ReactModal>
     </div>
       )
 
