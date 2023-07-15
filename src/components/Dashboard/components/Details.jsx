@@ -6,7 +6,7 @@ const Details = () =>{
     const [details,setDetails] = useOutletContext();
     console.log(details);
     return(
-        <div className="h-full bg-color6 flex flex-col justify-center items-center">
+        <div className="h-full bg-gray-100 flex flex-col justify-center items-center">
             <span></span>
         </div>
     )

@@ -95,8 +95,8 @@ const Login = () => {
   return (
     <div className="bg-white  flex flex-col">
        
-        <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-10 md:gap-10 lg:gap-0 flex-grow justify-around items-center my-28">
-          <div className="flex flex-col justify-center items-center gap-5 ">
+        <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-10 md:gap-10 lg:gap-0 flex-grow justify-around items-center my-10 h-[550px]">
+          <div className="flex flex-col justify-center items-center gap-5 h-96 ">
             <p className='text-4xl font-header text-black'>Login </p>
             <form  onSubmit={handleSubmit} className='flex flex-col gap-5'>
             
@@ -137,7 +137,7 @@ const Login = () => {
           </div>
           <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685900759/EventWizard/login_dekh49.jpg" 
             alt="logo" 
-            className='w-80 md:w-2/5 lg:w-1/4 h-92 rounded-md'/>
+            className='w-80 md:w-2/5 lg:w-1/4 h-[500px] rounded-md'/>
         </div>
         
         
