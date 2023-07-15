@@ -148,7 +148,7 @@ const Signup = () => {
   return (
     <div className="flex flex-col bg-white">
        
-        <div className="flex flex-col-reverse items-center justify-around gap-5 my-20 md:flex-col-reverse lg:flex-row md:gap-5 lg:gap-0">
+        <div className="flex flex-col-reverse items-center justify-around gap-5 my-20 md:flex-col-reverse lg:flex-row md:gap-5 lg:gap-0 h-[600px]">
           <div className="flex flex-col items-center justify-center gap-5 ">
             <p className='text-4xl text-black font-header'>Create Account</p>
             <form  onSubmit={handleSubmit} className='flex flex-col gap-5'>
@@ -237,7 +237,7 @@ const Signup = () => {
           </div>
           <img src="https://res.cloudinary.com/dv8zwrzop/image/upload/v1685904375/EventWizard/signup_x0lkoc.jpg" 
             alt="logo"
-            className='w-80 md:w-1/2 lg:w-2/5' />
+            className='w-80 md:w-1/2 lg:w-2/5 h-[550px]' />
         </div>
         
     </div>
