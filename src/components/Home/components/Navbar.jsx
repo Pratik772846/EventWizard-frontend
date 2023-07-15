@@ -9,10 +9,12 @@ import { useBearStore } from '../../../store/index.js';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState(true);
-  const [notificationCount, setNotificationCount] = useState(5); // Replace with your notification count logic
   const [userProfile, setUserProfile] = useState(null);
   const setProfile = useBearStore((state) => state.setUserProfile);
 
+  const invitationCount = useBearStore((state) => state.invitationsCount);
+
+  
 
   const fetchUserProfile = async () => {
     const accessToken = await Refresh();
@@ -57,13 +59,13 @@ const Navbar = () => {
         <h1 className="text-xl font-semibold">Event Management</h1>
         <div className="relative">
           <div className="flex items-center">
-            {isNotificationVisible && notificationCount > 0 && (
+            {isNotificationVisible && invitationCount > 0 && (
               <div className="relative pb-5 pl-10 ml-2">
                 <div className="absolute top-0 right-0 flex items-center justify-center w-6 h-6 text-xs text-white bg-red-500 rounded-full">
                   <RiNotification3Line />
                 </div>
                 <div className="absolute flex items-center justify-center w-6 h-6 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
-                  {notificationCount}
+                  {invitationCount}
                 </div>
               </div>
             )}

@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Refresh from '../../../../hooks/useRefreshtoken.jsx';
 import { toast } from 'react-toastify';
+import { useBearStore } from '../../../../store';
+
 
 const Body = () => {
   const [invitations, setInvitations] = useState([]);
   const [isActionTaken, setIsActionTaken] = useState(false);
+  const setInvitationsCount = useBearStore((state) => state.setInvitationsCount); 
+
 
   const fetchData = async () => {
     const userId = sessionStorage.getItem('id');
@@ -29,6 +33,8 @@ const Body = () => {
       const { invitations } = response.data.user;
 
       setInvitations(invitations);
+      setInvitationsCount(invitations.length); 
+
     } catch (error) {
       console.error('Error retrieving user data:', error);
     }

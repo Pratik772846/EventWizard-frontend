@@ -3,8 +3,9 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { useBearStore } from '../../../store/index'; // Update with the correct path
 
-const Navbar = ({ currentColor, screenSize ,setActiveMenu}) => {
+const Navbar = ({ currentColor, screenSize, setActiveMenu }) => {
   const NavButton = ({ title, customFunction, icon, color, dotColor }) => (
     <button type="button" onClick={customFunction} style={{ color }} className="relative p-3 text-xl rounded-full hover:bg-light-gray">
       <span
@@ -16,7 +17,9 @@ const Navbar = ({ currentColor, screenSize ,setActiveMenu}) => {
   );
 
   const [isClicked, setIsClicked] = useState({});
-  
+  const bearStore = useBearStore(); // Access the Zustand store
+  const { userProfile } = bearStore; // Retrieve the user profile from the store
+
   const handleClick = (clicked) => setIsClicked({ ...isClicked, [clicked]: true });
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Navbar = ({ currentColor, screenSize ,setActiveMenu}) => {
         >
           <p>
             <span className="text-gray-400 text-14">Hi, </span>
-            <span className="ml-1 font-bold text-gray-400 text-14">Pranav</span>
+            <span className="ml-1 font-bold text-gray-400 text-14">{userProfile.name}</span> 
           </p>
           <MdKeyboardArrowDown className="text-gray-400 text-14" />
         </div>
