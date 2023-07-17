@@ -6,17 +6,12 @@ import Refresh from '../../hooks/useRefreshtoken.jsx';
 import axios from 'axios';
 
 const Dash = () => {
-  const currentColor = 'cyan';
+  const currentColor = 'tomato';
   const [activeMenu, setActiveMenu] = React.useState(true);
   const [screenSize, setScreenSize] = React.useState(window.innerWidth);
   const [details, setDetails] = React.useState('sddddd');
-
+  
   const { id } = useParams();
-  console.log(id);
-
-  const userId = sessionStorage.getItem('id');
-  console.log(userId);
-
   const getEvent = async () => {
     const accessToken = await Refresh();
     console.log(accessToken);
@@ -60,7 +55,7 @@ const Dash = () => {
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
       />
-      <div className="flex flex-row w-full">
+      <div className="flex flex-row w-full bg-color2">
         <div className={`${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' : 'w-0'} `}>
           <Sidebar
             activeMenu={activeMenu}

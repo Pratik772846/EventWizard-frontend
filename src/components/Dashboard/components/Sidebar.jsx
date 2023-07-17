@@ -4,6 +4,8 @@ import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
+import {BiDetail} from 'react-icons/bi';
+import {FcInvite} from "react-icons/fc";
 import { useEffect } from 'react';
 
 const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message }) => {
@@ -66,8 +68,9 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
           to={`/dash/${id}/invite_users`}
           onClick={() => handleLinkClick('invite_users')}
           style={activeLink === 'invite_users' ? activeLinkStyle : normalLinkStyle}
-          className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
+          className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
         >
+          {<FcInvite />}
           <span className="capitalize">Invite Users</span>
         </NavLink>
       </div>
@@ -75,25 +78,18 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
   };
 
   return (
-    <div className="h-screen pb-10 ml-3">
-      <div className="md:w-64" style={{ minHeight: '100vh', maxWidth: '16rem' }}>
+    <div className="h-screen pb-10 ml-3 pr-3">
+      <>
         {activeMenu && (
           <>
             <div className="flex items-center justify-between">
               <Link
                 to="/home"
                 onClick={handleCloseSidebar}
-                className="flex items-center gap-3 mt-4 ml-3 text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
+                className="flex items-center gap-3 mt-4 ml-3 text-3xl font-extrabold tracking-tight dark:text-white text-slate-900"
               >
                 <SiShopware /> <span>Evento</span>
               </Link>
-              <button
-                type="button"
-                onClick={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
-                className="block p-3 mt-4 text-xl rounded-full hover:bg-light-gray md:hidden"
-              >
-                <MdOutlineCancel />
-              </button>
             </div>
             <div className="mt-10">
               <div>
@@ -101,8 +97,9 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
                   to={`/dash/${id}`}
                   onClick={() => handleLinkClick('details')}
                   style={activeLink === 'details' ? activeLinkStyle : normalLinkStyle}
-                  className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md m-2"
+                  className="flex items-center gap-5 pl-4 pt-3 pb-2.5 text-xl rounded-lg  m-2"
                 >
+                  {<BiDetail/>}
                   <span className="capitalize">Details</span>
                 </NavLink>
               </div>
@@ -115,10 +112,10 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
                       key={`/${link.name}`}
                       onClick={() => handleLinkClick(link.name)}
                       style={activeLink === link.name ? activeLinkStyle : normalLinkStyle}
-                      className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
+                      className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl m-2"
                     >
                       {link.icon}
-                      <span className="capitalize">{link.name}</span>
+                      <span className="capitalize ">{link.name}</span>
                     </NavLink>
                   ))}
                 </div>
@@ -127,7 +124,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
             </div>
           </>
         )}
-      </div>
+      </>
     </div>
   );
 };

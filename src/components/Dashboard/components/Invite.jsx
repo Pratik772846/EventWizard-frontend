@@ -112,12 +112,12 @@ const Invite = ()=>{
         {filteredUsers.map(({ _id, email, name }) => (
           <div key={_id} className="rounded-lg shadow-md shadow-gray-600 bg-white w-96 flex flex-col justify-center items-center gap-5">
             <div className="text-center flex flex-col justify-center items-center">
-              <img src={logo} alt="Guest Image" className="w-20 h-20 rounded-full pt-2" />
+              <img src={logo} alt="Guest Image" className="w-32 h-32 rounded-full pt-2" />
               <p className="py-5 text-5xl md:text-3xl italic font-medium  antialiased">NAME: {name.toUpperCase()}</p>
               <p className="text-2xl italic antialiased">EmailId : {email}</p>
             </div>
             <button
-              className=" px-6 py-3 m-4 text-center text-xl rounded-lg duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+              className=" px-6 py-3 m-4 text-center text-xl text-white rounded-lg duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
               onClick={()=>handleClick(_id)}
               >Invite Users
             </button>
@@ -137,11 +137,11 @@ const Invite = ()=>{
                   value={searchText}
                   autoComplete="off"
                   placeholder="Search for Users"
-                  className='h-11 w-96 rounded-md text-red-400 focus:outline-none  text-lg pl-3 placeholder-black'
+                  className='h-11 w-96 rounded-md text-color1 focus:outline-none  text-lg pl-3 placeholder-gray-500'
                   onChange={handleChange}
                 />
                 <button 
-                  className="w-40 px-6  text-center text-xl rounded-lg duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+                  className="w-40 px-6  text-center text-xl rounded-lg text-white duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
                   onClick={handleSubmit}>
                   Search
                 </button>
