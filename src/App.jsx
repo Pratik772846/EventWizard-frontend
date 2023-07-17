@@ -21,6 +21,7 @@ import Invite from "./components/Dashboard/components/Invite.jsx";
 import { useEffect } from "react";
 import { messaging } from "./firebase";
 import { getToken } from "firebase/messaging";
+import Budget from "./components/Dashboard/components/Budget/Budget.jsx";
 
 function App() {
 
@@ -123,6 +124,12 @@ function App() {
               path="invite_users"
               element={<ProtectedUserRoute>
                 <Invite/>
+              </ProtectedUserRoute>}
+            />
+            <Route
+              path="budget"
+              element={<ProtectedUserRoute>
+                <Budget/>
               </ProtectedUserRoute>}
             />
         </Route>

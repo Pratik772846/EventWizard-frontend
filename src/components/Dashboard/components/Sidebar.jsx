@@ -6,6 +6,7 @@ import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
 import {BiDetail} from 'react-icons/bi';
 import {FcInvite} from "react-icons/fc";
+import {GiShinyPurse} from "react-icons/gi";
 import { useEffect } from 'react';
 
 const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message }) => {
@@ -77,6 +78,22 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
     );
   };
 
+  const Budget = ()=>{
+    return(
+      <div>
+        <NavLink
+          to={`/dash/${id}/budget`}
+          onClick={() => handleLinkClick('budget')}
+          style={activeLink === 'budget' ? activeLinkStyle : normalLinkStyle}
+          className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
+        >
+          {<GiShinyPurse />}
+          <span className="capitalize">Budget</span>
+        </NavLink>
+      </div>
+    )
+  }
+
   return (
     <div className="h-screen pb-10 ml-3 pr-3">
       <>
@@ -121,6 +138,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
                 </div>
               ))}
               {admin ? <InviteUsers /> : null}
+              {admin ? <Budget /> : null}
             </div>
           </>
         )}
