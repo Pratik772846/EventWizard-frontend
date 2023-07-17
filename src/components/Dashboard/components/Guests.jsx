@@ -5,8 +5,7 @@ import logo from "../../../assets/img.avif";
 import ReactModal from "react-modal";
 import Profile from "./Profile";
 import {ImCross} from "react-icons/im";
-// import {ImHome} from "react-icons/im";
-// ReactModal.setAppElement('#yourAppElement');
+
 const Guests = ()=>{
     const [details,setDetails] = useOutletContext();
     const [guests,setGuests] = useState([]);
@@ -71,7 +70,7 @@ const Guests = ()=>{
               <p className="pt-6  italic font-medium text-5xl antialiased "> {name.toUpperCase()}</p>
             </div>
             <button 
-                  className=" px-6 py-3 m-4 text-center text-xl duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+                  className=" px-6 py-3 m-4 text-center text-white rounded-lg text-xl duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
                   onClick={()=>handleClick(userId)}
                   >View Details
             </button>

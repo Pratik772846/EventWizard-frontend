@@ -18,8 +18,32 @@ import Guests from "./components/Dashboard/components/Guests.jsx";
 import HandleInvitaions from "./components/Home/components/Invitations/handleInvitations.jsx";
 import EditProfile from "./components/Home/components/EditProfile.jsx";
 import Invite from "./components/Dashboard/components/Invite.jsx";
+import { useEffect } from "react";
+import { messaging } from "./firebase";
+import { getToken } from "firebase/messaging";
 
 function App() {
+
+  async function requestPermission() {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      // Generate Token
+      const token = await getToken(messaging, {
+        vapidKey:
+          "BKIBd_519dLI2gDyYak_M_ep-3fYICM8kKCPBY64PqnMu3f6UIqEbIPp0NOoqLmvqJquccjgLKucAa_DjecES3I",
+      });
+      console.log("Token Gen", token);
+      // Send this token  to server ( db)
+    } else if (permission === "denied") {
+      alert("You denied for the notification");
+    }
+  }
+
+  useEffect(() => {
+    // Req user for notification permission
+    requestPermission();
+  }, []);
+
   return (
     <>
       <ToastContainer />

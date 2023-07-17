@@ -1,40 +1,32 @@
-import {useState} from 'react';
-import { Link, NavLink,useParams} from 'react-router-dom';
+import { useState } from 'react';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
-import { FiShoppingBag } from 'react-icons/fi';
 import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
+import {BiDetail} from 'react-icons/bi';
+import {FcInvite} from "react-icons/fc";
 import { useEffect } from 'react';
 
-const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize , message }) => {
-
+const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message }) => {
   console.log(message);
-  const [admin,setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const [activeLink, setActiveLink] = useState('details'); // Set 'details' as the initial active link
 
-  const userId  = sessionStorage.getItem('id');
+  const userId = sessionStorage.getItem('id');
   console.log(userId);
 
   console.log(admin);
-  useEffect(()=>{
-    if(message?.adminId===userId){
+  useEffect(() => {
+    if (message?.adminId === userId) {
       setAdmin(true);
     }
-  },[message])
+  }, [message]);
 
-  const {id} = useParams();
+  const { id } = useParams();
   const links = [
     {
-      title: 'Dashboard',
-      links: [
-        {
-          name: 'events',
-          icon: <FiShoppingBag />,
-        },
-      ],
-    },
-    {
-      title: 'Pages',
+      title: '',
       links: [
         {
           name: 'notifications',
@@ -54,99 +46,85 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize , message
     }
   };
 
-  const activeLink =
-    'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
-  const normalLink =
-    'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
+  const activeLinkStyle = {
+    backgroundColor: currentColor,
+    color: 'white',
+  };
 
-  const InviteUsers = ()=>{
-    return(
+  const normalLinkStyle = {
+    backgroundColor: '',
+    color: 'black',
+  };
+
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName);
+    handleCloseSidebar();
+  };
+
+  const InviteUsers = () => {
+    return (
       <div>
         <NavLink
           to={`/dash/${id}/invite_users`}
-          onClick={handleCloseSidebar}
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? currentColor : '',
-          })}
-          className={({ isActive }) =>
-            isActive ? activeLink : normalLink
-          }
+          onClick={() => handleLinkClick('invite_users')}
+          style={activeLink === 'invite_users' ? activeLinkStyle : normalLinkStyle}
+          className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
         >
+          {<FcInvite />}
           <span className="capitalize">Invite Users</span>
         </NavLink>
       </div>
-    )
-  }
+    );
+  };
+
   return (
-    <div className="h-screen pb-10 ml-3">
-      <div
-        className=" md:w-64"
-        style={{ minHeight: '100vh', maxWidth: '16rem' }}
-      >
+    <div className="h-screen pb-10 ml-3 pr-3">
+      <>
         {activeMenu && (
           <>
             <div className="flex items-center justify-between">
               <Link
                 to="/home"
                 onClick={handleCloseSidebar}
-                className="flex items-center gap-3 mt-4 ml-3 text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
+                className="flex items-center gap-3 mt-4 ml-3 text-3xl font-extrabold tracking-tight dark:text-white text-slate-900"
               >
                 <SiShopware /> <span>Evento</span>
               </Link>
-              <button
-                type="button"
-                onClick={() =>
-                  setActiveMenu((prevActiveMenu) => !prevActiveMenu)
-                }
-                className="block p-3 mt-4 text-xl rounded-full hover:bg-light-gray md:hidden"
-              >
-                <MdOutlineCancel />
-              </button>
             </div>
             <div className="mt-10">
               <div>
                 <NavLink
-                      to={`/dash/${id}`}
-                      onClick={handleCloseSidebar}
-                      style={({ isActive }) => ({
-                        backgroundColor: isActive ? currentColor : '',
-                      })}
-                      className={({ isActive }) =>
-                        isActive ? activeLink : normalLink
-                      }
+                  to={`/dash/${id}`}
+                  onClick={() => handleLinkClick('details')}
+                  style={activeLink === 'details' ? activeLinkStyle : normalLinkStyle}
+                  className="flex items-center gap-5 pl-4 pt-3 pb-2.5 text-xl rounded-lg  m-2"
                 >
-                    <span className="capitalize">Details</span>
+                  {<BiDetail/>}
+                  <span className="capitalize">Details</span>
                 </NavLink>
               </div>
               {links.map((item) => (
                 <div key={item.title}>
-                  <p className="m-3 mt-4 text-gray-400 uppercase">
-                    {item.title}
-                  </p>
+                  <p className="m-3 mt-4 text-gray-400 uppercase">{item.title}</p>
                   {item.links.map((link) => (
                     <NavLink
                       to={`/dash/${id}/${link.name}`}
                       key={`/${link.name}`}
-                      onClick={handleCloseSidebar}
-                      style={({ isActive }) => ({
-                        backgroundColor: isActive ? currentColor : '',
-                      })}
-                      className={({ isActive }) =>
-                        isActive ? activeLink : normalLink
-                      }
+                      onClick={() => handleLinkClick(link.name)}
+                      style={activeLink === link.name ? activeLinkStyle : normalLinkStyle}
+                      className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl m-2"
                     >
                       {link.icon}
-                      <span className="capitalize">{link.name}</span>
+                      <span className="capitalize ">{link.name}</span>
                     </NavLink>
                   ))}
                 </div>
               ))}
-              {admin?InviteUsers() : <></>}
-              
+              {admin ? <InviteUsers /> : null}
             </div>
           </>
         )}
-      </div>
+      </>
     </div>
   );
 };

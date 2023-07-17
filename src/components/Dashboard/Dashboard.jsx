@@ -1,49 +1,42 @@
 import React from 'react';
-import {Outlet,useParams} from "react-router-dom";
+import { Outlet, useParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import Refresh from "../../hooks/useRefreshtoken.jsx";
-import axios from "axios";
+import Refresh from '../../hooks/useRefreshtoken.jsx';
+import axios from 'axios';
 
-const App = () => {
-  const currentColor = 'cyan';
+const Dash = () => {
+  const currentColor = 'tomato';
   const [activeMenu, setActiveMenu] = React.useState(true);
   const [screenSize, setScreenSize] = React.useState(window.innerWidth);
-  const [details,setDetails] = React.useState("sddddd");
-
-  const {id} = useParams();
-  console.log(id);
-
-  const userId  = sessionStorage.getItem('id');
-  console.log(userId);
-
-  const getEvent = async()=>{
-    const accessToken= await Refresh();
+  const [details, setDetails] = React.useState('sddddd');
+  
+  const { id } = useParams();
+  const getEvent = async () => {
+    const accessToken = await Refresh();
     console.log(accessToken);
 
-    // const userId  = sessionStorage.getItem('id');
-    // console.log(userId);
-
     const config = {
-      headers:{
-        'authorization' : `Bearer ${accessToken}`
-      }
-    }
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    };
 
     try {
-      const response = await axios.get(`https://eventwizard-backend.onrender.com/events/${id}`,config);
-      // console.log(response);
+      const response = await axios.get(
+        `https://eventwizard-backend.onrender.com/events/${id}`,
+        config
+      );
       console.log(response?.data);
-      // setEvents(response?.data);
-      // setFilteredEvents(response?.data);
       setDetails(response?.data);
     } catch (error) {
       console.error(error);
     }
-  }
-  React.useEffect(()=>{
+  };
+
+  React.useEffect(() => {
     getEvent();
-  },[]);
+  }, []);
 
   React.useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -56,22 +49,28 @@ const App = () => {
 
   return (
     <>
-      <Navbar currentColor={currentColor} screenSize={screenSize} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-      <div className='flex flex-row  w-full'>
-        <div className='w-1/5 md:w-1/3 lg:w-1/5'>
-          <Sidebar 
-            activeMenu={activeMenu} 
-            setActiveMenu={setActiveMenu} 
-            currentColor={currentColor} 
-            screenSize={screenSize} 
-            message={details}/>
+      <Navbar
+        currentColor={currentColor}
+        screenSize={screenSize}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
+      <div className="flex flex-row w-full bg-color2">
+        <div className={`${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' : 'w-0'} `}>
+          <Sidebar
+            activeMenu={activeMenu}
+            setActiveMenu={setActiveMenu}
+            currentColor={currentColor}
+            screenSize={screenSize}
+            message={details}
+          />
         </div>
-        <div className='w-4/5 md:w-2/3 lg:w-4/5 '>
-          <Outlet context={[details,setDetails]}/>
+        <div className={`${activeMenu ? 'w-4/5 md:w-2/3 lg:w-4/5' : 'w-full'}`}>
+          <Outlet context={[details, setDetails]} />
         </div>
       </div>
     </>
   );
 };
 
-export default App;
+export default Dash;
