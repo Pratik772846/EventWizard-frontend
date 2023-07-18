@@ -44,13 +44,13 @@ const Navbar = () => {
         </div>
         
         <button 
-        className="my-10 bg-color2 text-white text-lg py-3 px-4 rounded-xl"
+        className="my-10 bg-color2 text-white text-lg py-3 px-4 rounded-xl duration-200 hover:scale-105"
         onClick={handleOpenModal1}>
           View Report
         </button>
         
         <button 
-        className="h-2/3 px-2 mr-5 rounded-xl text-white bg-color2 text-lg"
+        className="h-2/3 px-2 mr-5 rounded-xl text-white bg-color2 text-lg duration-200 hover:scale-105"
         onClick={handleOpenModal}>
             Add transaction
         </button>

@@ -48,15 +48,19 @@ const Dash = () => {
   }, []);
 
   return (
-    <>
-      <Navbar
-        currentColor={currentColor}
-        screenSize={screenSize}
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
-      />
-      <div className="flex flex-row w-full bg-color2">
-        <div className={`${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' : 'w-0'} `}>
+    <div className='bg-gray-100 relative flex flex-col'>
+      <div className='fixed top-0 w-full'>
+        <Navbar
+          currentColor={currentColor}
+          screenSize={screenSize}
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+        />
+      </div>
+      
+      
+      <div className="flex h-full w-full bg-color2 mt-14 pt-1 ">
+        <div className={` fixed h-screen ${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' :'w-0'} grow  `}>
           <Sidebar
             activeMenu={activeMenu}
             setActiveMenu={setActiveMenu}
@@ -65,11 +69,11 @@ const Dash = () => {
             message={details}
           />
         </div>
-        <div className={`${activeMenu ? 'w-4/5 md:w-2/3 lg:w-4/5' : 'w-full'}`}>
+        <div className={`flex-1 pl-96 ${activeMenu ? 'w-4/5 md:w-2/3 lg:w-4/5' : 'w-full'} overflow-y-auto`}>
           <Outlet context={[details, setDetails]} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
