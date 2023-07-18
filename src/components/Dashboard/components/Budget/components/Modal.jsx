@@ -37,7 +37,7 @@ const Modal = ()=>{
                   onChange={handleChange}
             />
             <button 
-            className="bg-white border-2 mb-5 h-10 rounded-xl w-1/2 text-xl text-color2"
+            className="bg-white border-2 mb-5 h-10 rounded-xl w-1/2 text-xl duration-200 hover:scale-105 text-color2 hover:bg-color2 hover:text-white"
             onClick = {handleSubmit}>
                 Save
             </button>

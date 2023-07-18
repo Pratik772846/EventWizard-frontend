@@ -79,7 +79,7 @@ const Navbar = ({ currentColor, screenSize, setActiveMenu }) => {
   }, []);
 
   return (
-    <div className="relative flex justify-between p-2 md:mx-6 bg-gray-100 ">
+    <div className="flex justify-between p-2 md:px-6 bg-gray-100 ">
       <NavButton1
         title="Menu"
         customFunction={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}

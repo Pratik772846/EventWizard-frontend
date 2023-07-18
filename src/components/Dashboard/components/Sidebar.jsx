@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
-import { MdOutlineCancel } from 'react-icons/md';
+import {SiInvoiceninja} from "react-icons/si";
 import { RiNotification3Line } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
 import {BiDetail} from 'react-icons/bi';
-import {FcInvite} from "react-icons/fc";
 import {GiShinyPurse} from "react-icons/gi";
 import { useEffect } from 'react';
 
@@ -71,7 +70,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
           style={activeLink === 'invite_users' ? activeLinkStyle : normalLinkStyle}
           className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-xl text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2"
         >
-          {<FcInvite />}
+          {<SiInvoiceninja />}
           <span className="capitalize">Invite Users</span>
         </NavLink>
       </div>
@@ -95,7 +94,7 @@ const Sidebar = ({ activeMenu, setActiveMenu, currentColor, screenSize, message 
   }
 
   return (
-    <div className="h-screen pb-10 ml-3 pr-3">
+    <div className=" pb-10 ml-3 pr-3">
       <>
         {activeMenu && (
           <>
