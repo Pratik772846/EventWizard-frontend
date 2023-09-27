@@ -50,7 +50,7 @@ const Invite = ()=>{
           }
         }
         try {
-          const response = await axios.post(`http://localhost:3000/invites/${id}`,
+          const response = await axios.post(`https://eventwizard-backend.onrender.com/invites/${id}`,
           {
             "userId":_id
           },config);
@@ -85,7 +85,7 @@ const Invite = ()=>{
     }
 
     const shimmerui = ()=>(
-        <div className='flex flex-wrap justify-center items-center pb-12'>
+        <div className='flex flex-wrap items-center justify-center pb-12'>
           <Shimmer/>
           <Shimmer/>
           <Shimmer/>
@@ -108,16 +108,16 @@ const Invite = ()=>{
       )
 
       const showUsers=()=>(
-        <div className="flex flex-row flex-wrap justify-center items-center gap-20  py-10">
+        <div className="flex flex-row flex-wrap items-center justify-center gap-20 py-10">
         {filteredUsers.map(({ _id, email, name }) => (
-          <div key={_id} className="rounded-lg shadow-md shadow-gray-600 bg-white w-96 flex flex-col justify-center items-center gap-5">
-            <div className="text-center flex flex-col justify-center items-center">
-              <img src={logo} alt="Guest Image" className="w-32 h-32 rounded-full pt-2" />
-              <p className="py-5 text-5xl md:text-3xl italic font-medium  antialiased">NAME: {name.toUpperCase()}</p>
-              <p className="text-2xl italic antialiased">EmailId : {email}</p>
+          <div key={_id} className="flex flex-col items-center justify-center gap-5 bg-white rounded-lg shadow-md shadow-gray-600 w-96">
+            <div className="flex flex-col items-center justify-center text-center">
+              <img src={logo} alt="Guest Image" className="w-32 h-32 pt-2 rounded-full" />
+              <p className="py-5 text-5xl antialiased italic font-medium md:text-3xl">NAME: {name.toUpperCase()}</p>
+              <p className="text-2xl antialiased italic">EmailId : {email}</p>
             </div>
             <button
-              className=" px-6 py-3 m-4 text-center text-xl text-white rounded-lg duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+              className="px-6 py-3 m-4 text-xl text-center text-white duration-200 rounded-lg  hover:scale-105 bg-gradient-to-r from-color1 to-color2"
               onClick={()=>handleClick(_id)}
               >Invite Users
             </button>
@@ -128,20 +128,20 @@ const Invite = ()=>{
     
 
     return(
-        <div className="w-full h-full bg-gray-200  ">
+        <div className="w-full h-full bg-gray-200 ">
 
-            <div className='flex flex-row gap-10 pt-10 justify-center'>
+            <div className='flex flex-row justify-center gap-10 pt-10'>
                <input 
                   type="text" 
                   name="users"
                   value={searchText}
                   autoComplete="off"
                   placeholder="Search for Users"
-                  className='h-11 w-96 rounded-md text-color1 focus:outline-none  text-lg pl-3 placeholder-gray-500'
+                  className='pl-3 text-lg placeholder-gray-500 rounded-md h-11 w-96 text-color1 focus:outline-none'
                   onChange={handleChange}
                 />
                 <button 
-                  className="w-40 px-6  text-center text-xl rounded-lg text-white duration-200 hover:scale-105 bg-gradient-to-r from-color1  to-color2"
+                  className="w-40 px-6 text-xl text-center text-white duration-200 rounded-lg hover:scale-105 bg-gradient-to-r from-color1 to-color2"
                   onClick={handleSubmit}>
                   Search
                 </button>
