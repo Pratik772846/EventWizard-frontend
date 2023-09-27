@@ -1,12 +1,36 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import moment from 'moment';
 import Chart from 'chart.js/auto';
-import 'chart.js/dist/chart.min.js';
-import 'chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Refresh from "../../../hooks/useRefreshtoken.jsx";
 
 const LineChart = () => {
   const chartRef = useRef(null);
+  const [expenses, setExpenses] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = await Refresh(); 
+        const config = {
+          headers: {
+            'authorization': `Bearer ${accessToken}`
+          }
+        };
+
+        const response = await axios.get(`http://localhost:3000/expense/${id}`, config); 
+        console.log(response.data);
+        setExpenses(response.data); 
+      } catch (error) {
+        console.error('Error fetching expenses:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   useEffect(() => {
     const chartInstance = chartRef.current?.chartInstance;
@@ -17,30 +41,9 @@ const LineChart = () => {
 
   const lineChartData = [
     {
-      label: 'Budget',
-      data: [
-        { x: moment('2005-01-01'), y: 28 },
-        { x: moment('2006-01-01'), y: 44 },
-        { x: moment('2007-01-01'), y: 48 },
-        { x: moment('2008-01-01'), y: 50 },
-        { x: moment('2009-01-01'), y: 66 },
-        { x: moment('2010-01-01'), y: 78 },
-        { x: moment('2011-01-01'), y: 84 },
-      ],
+      label: 'Amount',
+      data: expenses.map(expense => ({ x: expense.type, y: expense.amount })),
       color: 'blue',
-    },
-    {
-      label: 'Expense',
-      data: [
-        { x: moment('2005-01-01'), y: 10 },
-        { x: moment('2006-01-01'), y: 20 },
-        { x: moment('2007-01-01'), y: 30 },
-        { x: moment('2008-01-01'), y: 39 },
-        { x: moment('2009-01-01'), y: 50 },
-        { x: moment('2010-01-01'), y: 70 },
-        { x: moment('2011-01-01'), y: 100 },
-      ],
-      color: 'green',
     },
   ];
 
@@ -63,20 +66,12 @@ const LineChart = () => {
   const chartOptions = {
     scales: {
       x: {
-        type: 'time',
-        time: {
-          unit: 'year',
-          displayFormats: {
-            year: 'YYYY',
-          },
-        },
+        type: 'category', 
       },
       y: {
         min: 0,
-        max: 100,
         ticks: {
-          stepSize: 20,
-          callback: (value) => `${value}%`,
+          stepSize: 500,
         },
       },
     },
@@ -84,7 +79,7 @@ const LineChart = () => {
       legend: {
         display: true,
         labels: {
-          color: 'rgba(0, 0, 0, 0.8)', // Color for legend labels
+          color: 'rgba(0, 0, 0, 0.8)', 
         },
       },
       tooltip: {
