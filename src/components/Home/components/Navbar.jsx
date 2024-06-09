@@ -48,10 +48,41 @@ const Navbar = () => {
     fetchUserProfile();
   },[]);
 
-
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const logout = async() => {
+    e.preventDefault();
+    try {
+      console.log(details);
+      const response = await Axios.post('https://eventwizard-backend.onrender.com/user/login',{
+        email:details.email,
+        password:details.password
+        });
+        console.log(response);
+        console.log(response.data.message);
+        if(response.data.message==='Auth successful'){
+          
+          // await Login();
+          state.isAuthenticated = true;
+          sessionStorage.setItem('id',response?.data?.id);
+          sessionStorage.setItem('refreshToken',response?.data?.refreshToken);
+          sessionStorage.setItem('isAuthenticated',true);
+          console.log(state);
+          console.log(state.isAuthenticated)
+          // console.log(state.isAuthenticated);
+          navigate('/home',{ replace: true });
+        }
+        else{
+          navigate('/',{replace:true});
+        }
+        toast(response.data.message);
+    } catch (error) {
+      console.log(error.message);
+      toast(error.message);
+    }
+  }
 
   return (
     <nav className="py-4 text-white bg-color6">
@@ -84,7 +115,7 @@ const Navbar = () => {
                     <Link to="/profile">Profile</Link>
                   </li>
                   <li className="px-2 py-1 hover:bg-gray-200">Events</li>
-                  <li className="px-2 py-1 hover:bg-gray-200">Logout</li>
+                  <li className="px-2 py-1 hover:bg-gray-200" onClick={logout}>Logout</li>
                 </ul>
               )}
             </div>
