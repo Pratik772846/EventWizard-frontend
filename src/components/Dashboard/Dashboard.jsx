@@ -48,7 +48,7 @@ const Dash = () => {
   }, []);
 
   return (
-    <div className='bg-gray-100 relative flex flex-col'>
+    <div className='bg-gray-100 relative flex flex-col h-screen'>
       <div className='fixed top-0 w-full'>
         <Navbar
           currentColor={currentColor}
@@ -59,8 +59,8 @@ const Dash = () => {
       </div>
       
       
-      <div className="flex h-full w-full bg-color2 mt-14 pt-1 ">
-        <div className={` fixed h-screen ${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' :'w-0'} grow  `}>
+      <div className="flex flex-row h-full w-full mt-14 pt-1   ">
+        <div className={` fixed h-full ${activeMenu ? 'w-1/5 md:w-1/3 lg:w-1/5' :'w-0'} grow bg-color2 `}>
           <Sidebar
             activeMenu={activeMenu}
             setActiveMenu={setActiveMenu}
@@ -73,6 +73,7 @@ const Dash = () => {
           <Outlet context={[details, setDetails]} />
         </div>
       </div>
+
     </div>
   );
 };

@@ -36,6 +36,8 @@ const Guests = ()=>{
     
 
     useEffect(()=>{
+        console.log(details);
+        console.log(details?.guests);
         setGuests(details?.guests);
     },[details?.guests])
 
@@ -58,6 +60,13 @@ const Guests = ()=>{
           <Shimmer/>
         </div>
     )
+
+    const message = () =>(
+      <h1 className="text-2xl text-gray-800 text-center  mb-5 font-bold p-4 rounded-lg">
+        This event has zero guests at this moment
+      </h1>
+
+    );
 
     
 
@@ -97,9 +106,9 @@ const Guests = ()=>{
     
     if(!details) return null;
     return(
-        <div className="w-full h-full bg-gray-100  ">
+        <div className="w-full h-full bg-gray-300  ">
             {console.log(guests)}
-            {guests===undefined  ? shimmerui() : guests.length===0 ? shimmerui() :showGuests()}
+            {guests===undefined  ? shimmerui() : guests.length===0 ? message() :showGuests()}
         </div>
     )
 }
