@@ -128,7 +128,7 @@ const Invite = ()=>{
     
 
     return(
-        <div className="w-full h-full bg-gray-200 ">
+        <div className="w-full  bg-gray-200  ">
 
             <div className='flex flex-row justify-center gap-10 pt-10'>
                <input 
