@@ -93,7 +93,7 @@ const Body = () => {
   };
 
   return (
-    <div className="flex flex-col flex-wrap items-center justify-center gap-10 py-20 mx-20 bg-white">
+    <div className="flex flex-col flex-wrap items-center justify-center gap-10 py-20 mx-20 bg-white ">
       <h1 className="mb-8 text-4xl font-bold">Your Invitations</h1>
 
       {invitations.length > 0 && !isActionTaken ? (
