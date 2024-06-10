@@ -51,6 +51,7 @@ const Invite = ()=>{
         }
         try {
           const response = await axios.post(`https://eventwizard-backend.onrender.com/invites/${id}`,
+          // const response = await axios.post(`http://localhost:3000/invites/${id}`,
           {
             "userId":_id
           },config);
